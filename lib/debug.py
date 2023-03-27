@@ -1,12 +1,16 @@
 # need to import models.py - unsure on how to do so
+from db.models import *
+import ipdb
 
-A1 = Artist("Mac Miller", "Rap")
-A2 = Artist("Ludwig van Beethoven", "Classical")
+a1 = Artist("Mac Miller", "Rap")
+a2 = Artist("Ludwig van Beethoven", "Classical")
 
-L1 = Listener("Jesse")
-L2 = Listener("Andre")
-L3 = Listener("Tom")
-L4 = Listener("Collin")
+l1 = Listener("Jesse")
+l2 = Listener("Andre")
+l3 = Listener("Tom")
+l4 = Listener("Collin")
 
-S1 = Song("Ladders", A1, L4)
-S2 = Song("Für Elise", A2, L1)
+l1 = Song("Ladders", a1, l4)
+l2 = Song("Für Elise", a2, l1)
+
+ipdb.set_trace()
