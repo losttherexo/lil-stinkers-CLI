@@ -21,6 +21,6 @@ class Song:
 
     def __init__(self, name, artist_instance, listener_instance):
         self.name = name
-        self.arist = artist_instance
+        self.artist = artist_instance
         self.listeners = listener_instance
         Song.all_songs.append(self)
