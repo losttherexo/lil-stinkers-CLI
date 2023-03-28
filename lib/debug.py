@@ -1,16 +1,16 @@
-# need to import models.py - unsure on how to do so
-from db.models import *
+#!/usr/bin/env python3
+
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 import ipdb
 
-a1 = Artist("Mac Miller", "Rap")
-a2 = Artist("Ludwig van Beethoven", "Classical")
+from db.models import *
 
-l1 = Listener("Jesse")
-l2 = Listener("Andre")
-l3 = Listener("Tom")
-l4 = Listener("Collin")
 
-l1 = Song("Ladders", a1, l4)
-l2 = Song("Für Elise", a2, l1)
+if __name__ == '__main__':
+    
+    engine = create_engine('sqlite:///migrations_test.db')
+    Session = sessionmaker(bind=engine)
+    session = Session()
 
 ipdb.set_trace()
