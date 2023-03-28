@@ -12,6 +12,8 @@ if __name__ == '__main__':
     session = Session()
 
 session.query(Artist).delete()
+session.query(Listener).delete()
+session.query(Song).delete()
 session.commit()
 
 a1 = Artist(name="Mac Miller")

@@ -3,7 +3,6 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy import create_engine
 
-
 engine = create_engine('sqlite:///migrations_test.db')
 
 Base = declarative_base()
@@ -42,6 +41,3 @@ class Song(Base):
 
     def __repr__(self):
         return f'Song {self.id}: {self.name}'
-
-
-
