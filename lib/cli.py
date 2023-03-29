@@ -3,15 +3,15 @@
 from db.models import *
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from classes.artist import *
+from classes.stream import *
 from classes.listener import *
 from classes.song import *
 
 class CLI:
     def __init__(self, user_input):
-        self.artists = [artist for artist in session.query(Artist)]
-        self.listeners = [listener for listener in session.query(Listener)]
         self.songs = [song for song in session.query(Song)]
+        self.listeners = [listener for listener in session.query(Listener)]
+        self.streams = [stream for stream in session.query(Stream)]
         self.name = user_input
         self.start()
     
@@ -54,31 +54,29 @@ def add_data(self):
         add_song(self)
 
 def show_lists(self):
-    user_action = input("Would you like to see the artists, songs, or listeners? ")
-    if user_action.lower() == 'artists':
-        print(' ')
-        artists(self.artists)
-    elif user_action.lower() == 'songs':
+    user_action = input("Would you like to to check out our 'songs' or 'listeners'? (Choose one) ")
+    # if user_action.lower() == 'artists':
+    #     print(' ')
+    #     artists(self.artists)
+    if user_action.lower() == 'songs':
         print(' ')
         songs(self.songs)
     elif user_action.lower() == 'listeners':
         print(' ')
         listeners(self.listeners)
 
-def artists(artists):
-    print([a for a in artists])
-    print(' ')
+# def artists(artists):
+#     print([a for a in artists])
+#     print(' ')
 
 def songs(songs):
     print([s for s in songs])
-    print(' ')
 
 def listeners(listeners):
     print([l for l in listeners])
-    print(' ')
 
 if __name__ == '__main__':
-    engine = create_engine('sqlite:///db/migrations_test.db')
+    engine = create_engine('sqlite:///db/playlist.db')
     Session = sessionmaker(bind=engine)
     session = Session()
     user_input = input("Enter Your Name: ")
