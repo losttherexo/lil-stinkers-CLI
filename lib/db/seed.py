@@ -16,16 +16,20 @@ session.query(Listener).delete()
 session.query(Song).delete()
 session.commit()
 
-a1 = Artist(name="Mac Miller")
-a2 = Artist(name="Ludwig van Beethoven")
+#artist = name, genre, founded
+a1 = Artist(name="Mac Miller", genre= "Rap", founded=2010)
+a2 = Artist(name="Ludwig van Beethoven", founded=1782)
 
-l1 = Listener(name="Jesse")
-l2 = Listener(name="Andre")
-l3 = Listener(name="Tom")
-l4 = Listener(name="Collin")
+# listener = name, age
+l1 = Listener(name="Jesse", age = 30)
+l2 = Listener(name="Andre", age = 27)
+l3 = Listener(name="Tom", age = 28)
+l4 = Listener(name="Collin", age = 23)
 
-s1 = Song(name="Ladders", artist= a2, listener= l1)
-s2 = Song(name="Für Elise", artist= a1, listener= l4)
+# song: name, year, stream_count, artist, listener (stretch:link)
+
+s1 = Song(name="Ladders", year=2018, stream_count=100, artist= a2, listener= l1)
+s2 = Song(name="Für Elise", year=1810, stream_count=101, artist= a1, listener= l4)
 
 session.add_all([a1, a2, l1, l2, l3, l4, s1, s2])
 session.commit()
