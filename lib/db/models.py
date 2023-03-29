@@ -13,12 +13,12 @@ class Artist(Base):
     id = Column(Integer(), primary_key=True)
     name = Column(String())
     genre = Column(String(), default = '')
-    founded = Column(Integer())
+    founded = Column(Integer(), default = '')
 
     songs = relationship('Song', backref=backref('artist'))
 
-    def __repr__(self):
-        return f'Artist {self.id}: {self.name}'
+    # def __repr__(self):
+    #     return f'Artist {self.id}: {self.name}'
     
 
 # listener: name, age
@@ -34,7 +34,7 @@ class Listener(Base):
 
 
     def __repr__(self):
-        return f'Listener {self.id}: {self.name}'
+        return f'Listener {self.id}: {self.name}, {self.age}'
 
 
 # song: name, year, stream_count, artist, listener (stretch:link)
@@ -44,7 +44,7 @@ class Song(Base):
     id = Column(Integer(), primary_key=True)
     name = Column(String())
     year = Column(Integer())
-    stream_count = Column(Integer())
+    stream_count = Column(Integer(), default = 0)
     artist_id = Column(Integer(), ForeignKey('artists.id'))
     listener_id = Column(Integer(), ForeignKey('listeners.id'))
 
