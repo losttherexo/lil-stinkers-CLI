@@ -3,6 +3,9 @@
 from db.models import *
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from classes.artist import *
+from classes.listener import *
+from classes.song import *
 
 class CLI:
     def __init__(self, user_input):
@@ -33,6 +36,7 @@ class CLI:
                 elif choice.lower() == 'help':
                     pass
 
+                print(' ')
                 user_input = input("Would you like to turn off the sound ? (Type Y/N): ")
                 print(' ')
                 if user_input.lower() == 'y':
@@ -43,40 +47,14 @@ class CLI:
 def add_data(self):
     new_data = input('Would you like to add an Artist, Song, or Listener? ')
     if new_data.lower() == 'artist':
-        add_artist()
+        add_artist(self)
+    elif new_data.lower() == 'listener':
+        add_listener(self)
     elif new_data.lower() == 'song':
-        add_song()
-
-def add_artist(self):
-    artist_names = [a.name for a in self.artists]
-    artist_input = input('Enter artist name: ')
-
-    if artist_input in artist_names:
-        print(' ')
-        print('artist already in db')
-    else:
-        genre = input('Artist genre: ')
-        founded = input('Year they got started (if unknown, leave blank c:): ')
-        new_artist = Artist(name = artist_input, genre = genre, founded = founded)
-
-        session.add(new_artist)
-        session.commit()
-
-        self.artists.append(new_artist)
-
-def add_song(self):
-    artist_names = [a.name for a in self.artists]
-    artist = input('Enter Artist name: ')
-    print(artist)
-
-    # if artist not in artist_names:
-    #     add_artist(self)
-
-
-
+        add_song(self)
 
 def show_lists(self):
-    user_action = input("Would you like to see the artists, songs, or listeners?")
+    user_action = input("Would you like to see the artists, songs, or listeners? ")
     if user_action.lower() == 'artists':
         print(' ')
         artists(self.artists)
