@@ -24,8 +24,12 @@ l2 = Listener(name="Andre", age= 27)
 l3 = Listener(name="Tom", age= 28)
 l4 = Listener(name="Collin", age= 23)
 
-st1 = Stream(song_name=s1.name, song=s1, listener= l4)
+st1 = Stream(song_name=s1.name, song=s1, listener=l4)
 st2 = Stream(song_name=s2.name, song=s2, listener=l3)
+st3 = Stream(song_name=s1.name, song=s1, listener=l1)
+st4 = Stream(song_name=s1.name, song=s1, listener=l2)
+st5 = Stream(song_name=s2.name, song=s2, listener=l1)
+
 
 session.add_all([s1, s2, l1, l2, l3,l4, st1, st2])
 session.commit()

@@ -1,11 +1,17 @@
-from sqlalchemy import (create_engine, ForeignKey, Column, Integer, String)
+from sqlalchemy import (create_engine, ForeignKey, Column, Integer, String, Table)
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, backref
-from sqlalchemy import create_engine
 
 engine = create_engine('sqlite:///playlist.db')
-
 Base = declarative_base()
+
+song_listener = Table(
+    'song_listeners',
+    Base.metadata,
+    Column('song_id', ForeignKey('songs.id'), primary_key=True),
+    Column('listener_id', ForeignKey('listeners.id'), primary_key=True),
+    extend_existing= True
+)
 
 # song: name, artist, released
 class Song(Base):
@@ -44,8 +50,8 @@ class Stream(Base):
     
     id = Column(Integer(), primary_key=True)
     song_name =Column(String())
-    song_id = Column(Integer(), ForeignKey('songs.id'))
-    listener_id = Column(Integer(), ForeignKey('listeners.id'))
+    song_id = Column(ForeignKey('songs.id'))
+    listener_id = Column(ForeignKey('listeners.id'))
 
     # stretch goal below
 

@@ -22,14 +22,14 @@ class CLI:
 
         exit = False
         while exit == False:
-                choice = input(f"Enter 'list' to see all Artists, Songs, or" 
-                + " Listeners, 'search' to search for a specific artist, song" 
-                + " or listener, or 'add' to add a song to our cohort's"
-                + " playlist! ")
+                choice = input(f"Enter 'list' to see a list of all our" 
+                + " songs, 'search' to find a specific artist," 
+                + " song, or listener, or 'add' to add a song to our"
+                + " playlist's queue! ")
                 print(' ') 
-                if choice.lower() == "list":
+                if choice.lower() == 'list':
                     show_lists(self)
-                elif choice.lower() == "search":
+                elif choice.lower() == 'search':
                     print('ugh ur fake')
                 elif choice.lower() == 'add':
                     add_data(self)
@@ -37,7 +37,7 @@ class CLI:
                     pass
 
                 print(' ')
-                user_input = input("Would you like to turn off the sound ? (Type Y/N): ")
+                user_input = input("Would you like to turn off the sound? (Type Y/N): ")
                 print(' ')
                 if user_input.lower() == 'y':
                     print('Goodbye friend!')
@@ -45,35 +45,20 @@ class CLI:
                     exit = True
 
 def add_data(self):
-    new_data = input('Would you like to add an Artist, Song, or Listener? ')
-    if new_data.lower() == 'artist':
-        add_artist(self)
-    elif new_data.lower() == 'listener':
+    new_data = input('Would you like to add a Song, or Listener? ')
+    if new_data.lower() == 'listener':
         add_listener(self)
     elif new_data.lower() == 'song':
         add_song(self)
 
 def show_lists(self):
-    user_action = input("Would you like to to check out our 'songs' or 'listeners'? (Choose one) ")
-    # if user_action.lower() == 'artists':
-    #     print(' ')
-    #     artists(self.artists)
+    user_action = input("Would you like to to check out our 'songs' list or recent 'history'? (Choose one) ")
     if user_action.lower() == 'songs':
         print(' ')
         songs(self.songs)
-    elif user_action.lower() == 'listeners':
+    elif user_action.lower() == 'history':
         print(' ')
-        listeners(self.listeners)
-
-# def artists(artists):
-#     print([a for a in artists])
-#     print(' ')
-
-def songs(songs):
-    print([s for s in songs])
-
-def listeners(listeners):
-    print([l for l in listeners])
+        stream_history(self)
 
 if __name__ == '__main__':
     engine = create_engine('sqlite:///db/playlist.db')
