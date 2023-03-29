@@ -17,8 +17,8 @@ class Artist(Base):
 
     songs = relationship('Song', backref=backref('artist'))
 
-    # def __repr__(self):
-    #     return f'Artist {self.id}: {self.name}'
+    def __repr__(self):
+        return f'Artist {self.id}: {self.name}'
     
 
 # listener: name, age
