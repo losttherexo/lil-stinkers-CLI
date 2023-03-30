@@ -1,24 +1,25 @@
-from sqlalchemy import (create_engine, ForeignKey, Column, Integer, String)
+from sqlalchemy import (create_engine, ForeignKey, Column, Integer, String, Table)
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, backref
-from sqlalchemy import create_engine
+from sqlalchemy.ext.associationproxy import association_proxy
 
-engine = create_engine('sqlite:///migrations_test.db')
-
+engine = create_engine('sqlite:///playlist.db')
 Base = declarative_base()
 
-# artist: name, genre, founded
-class Artist(Base):
-    __tablename__ = 'artists'
+# song: name, artist, released
+class Song(Base):
+    __tablename__ = 'songs'
+
     id = Column(Integer(), primary_key=True)
     name = Column(String())
-    genre = Column(String(), default = '')
-    founded = Column(Integer(), default = '')
+    artist = Column(String())
+    year = Column(Integer(), default = '')
 
-    songs = relationship('Song', backref=backref('artist'))
+    streams = relationship('Stream', backref=backref('song'))
+    listeners = association_proxy('streams', 'listener', creator=lambda li: Stream(listener=li))
 
     def __repr__(self):
-        return f'Artist {self.id}: {self.name}'
+        return f'{self.name} by {self.artist}'
     
 
 # listener: name, age
@@ -29,23 +30,21 @@ class Listener(Base):
     name = Column(String())
     age = Column(Integer())
     
-
-    songs = relationship('Song', backref=backref('listener'))
-
+    streams = relationship('Stream', backref=backref('listener'))
+    songs = association_proxy('streams', 'song', creator=lambda sn: Stream(song=sn))
 
     def __repr__(self):
         return f'Listener {self.id}: {self.name}, {self.age}'
 
 
-# song: name, year, stream_count, artist, listener (stretch:link)
-class Song(Base):
-    __tablename__ = 'songs'
+# Stream: song, listener (stretch:link)
+class Stream(Base):
+    __tablename__ = 'streams'
     
     id = Column(Integer(), primary_key=True)
-    name = Column(String())
-    year = Column(Integer())
-    stream_count = Column(Integer(), default = 0)
-    artist_id = Column(Integer(), ForeignKey('artists.id'))
+    song_name = Column(String())
+
+    song_id = Column(Integer(), ForeignKey('songs.id'))
     listener_id = Column(Integer(), ForeignKey('listeners.id'))
 
     # stretch goal below
@@ -53,4 +52,4 @@ class Song(Base):
     # link = Column(String())
 
     def __repr__(self):
-        return f'Song {self.id}: {self.name}'
+        return f'Stream {self.id}: {self.song_name} streamed by {self.listener_id}'
