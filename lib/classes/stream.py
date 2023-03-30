@@ -9,3 +9,6 @@ session = Session()
 def stream_history(self):
     for index, stream in enumerate(self.streams):
         print(f'{index + 1}. {stream.listener.name} recently played {stream.song.name} by {stream.song.artist}')
+
+def add_stream(self):
+    print("i'm sorry, i am currently under construction")

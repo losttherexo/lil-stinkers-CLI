@@ -30,11 +30,11 @@ class CLI:
                 if choice.lower() == 'list':
                     show_lists(self)
                 elif choice.lower() == 'search':
-                    print('ugh ur fake')
+                    search_data(self)
                 elif choice.lower() == 'add':
                     add_data(self)
                 elif choice.lower() == 'help':
-                    pass
+                    display_help()
 
                 print(' ')
                 user_input = input("Would you like to turn off the sound? (Type Y/N): ")
@@ -44,13 +44,6 @@ class CLI:
                     print(' ')
                     exit = True
 
-def add_data(self):
-    new_data = input('Would you like to add a Song, or Listener? ')
-    if new_data.lower() == 'listener':
-        add_listener(self)
-    elif new_data.lower() == 'song':
-        add_song(self)
-
 def show_lists(self):
     user_action = input("Would you like to to check out our 'songs' list or recent 'history'? (Choose one) ")
     if user_action.lower() == 'songs':
@@ -59,6 +52,27 @@ def show_lists(self):
     elif user_action.lower() == 'history':
         print(' ')
         stream_history(self)
+
+def search_data(self):
+    pass
+
+def add_data(self):
+    new_data = input("Would you like to 'queue' a song, add a 'listener' or"
+    + " 'upload' a new song? ")
+    if new_data.lower() == 'listener':
+        add_listener(self)
+    elif new_data.lower() == 'upload':
+        add_song(self)
+    elif new_data.lower() == 'queue':
+        add_stream(self)
+
+def display_help():
+    print("If you've made it this far you are clearly extremely curious or"
+    + " just wanna try to break our code so here's some pointers to avoid"
+    + " doing that!")
+    print(" ")
+    print("Look for words wrapped in 'single quotes' and they'll take you" 
+    + " to some sort of musical or administrative wonderland! glhf ")
 
 if __name__ == '__main__':
     engine = create_engine('sqlite:///db/playlist.db')
