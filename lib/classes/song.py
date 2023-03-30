@@ -1,6 +1,8 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from db.models import Song
+import webbrowser
+
 
 engine = create_engine('sqlite:///db/playlist.db')
 Session = sessionmaker(bind=engine)
@@ -41,7 +43,24 @@ def remove_song(self):
         print('This input is case sensitive, try again! :)')
         
         remove_song(self)
-    
+
+def search_song(self):
+    print(' ')
+    query = input('Insert Song Name:') 
+    found_song = False
+    for s in self.songs:
+        if s.name.lower() == query.lower():
+            print(' ')
+            print(f'{s}')
+            found_song = True
+            choice = input("Would you like to 'play' this song?")
+            if choice == 'play':
+                print(s.yt_link)
+                webbrowser.open_new(s.yt_link)
+    if not found_song:
+        print('\nSong is not in Database :c')
+
+
 
 def songs(self):
     for index, song in enumerate(self.songs):
