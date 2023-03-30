@@ -1,20 +1,18 @@
-Goals:
+Welcome to our Little Stinker's Playlist CLI!!
 
-Tables:
-artist: name, genre, founded
-song: name, year, stream_count, artist, listener (stretch:link)
-listener: name, age
+Created by:
+André Vargas Roo
+Collin Burleigh
+Jesse Hunter
+Thuggin Duggan
 
-Functionality:
-Artists:
-returns sorted list of all artist by year
-add artist
+In our virtual playlist, you can do all sorts of neat stuff!
 
-Songs:
-returns list of songs
-add songs
+List out all songs or listeners.
 
-Listeners:
-returns list of listeners
-returns list of listeners by age
-add listeners
+Queue songs, upload new songs, or add new listeners.
+
+Search through songs, artists, or listeners.
+
+Delete a song from playlist.
+

@@ -20,6 +20,31 @@ def add_song(self):
     print(f'{name} by {artist}, was added to our playlist!')
     self.songs.append(new_song)
 
-def songs(songs):
-    for index, song in enumerate(songs):
+def remove_song(self):
+    print(' ')
+    song = input('What song would you like to remove? ')
+
+    if song.lower() in [s.name for s in self.songs.lower()]:
+        print(' ')
+        query = session.query(Song).filter(Song.name == song)
+        removed_song = query.first()
+        
+        session.delete(removed_song)
+        session.commit()
+    else:
+        print(' ')
+        print('This input is case sensitive, try again! :)')
+        
+        remove_song(self)
+    
+
+def songs(self):
+    for index, song in enumerate(self.songs):
         print(f'{index + 1}. {song.name} by {song.artist}')
+    
+    print(' ')
+    choice = input("Would you like to 'add' or 'remove' a song? ")
+    if choice.lower() == 'add':
+        add_song(self)
+    elif choice.lower() == 'remove':
+        remove_song(self)
