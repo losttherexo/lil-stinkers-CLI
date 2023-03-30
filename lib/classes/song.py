@@ -24,7 +24,7 @@ def remove_song(self):
     print(' ')
     song = input('What song would you like to remove? ')
 
-    if song.lower() in [s.name for s in self.songs.lower()]:
+    if song.lower() in [s.name.lower() for s in self.songs]:
         print(' ')
         query = session.query(Song).filter(Song.name == song)
         removed_song = query.first()

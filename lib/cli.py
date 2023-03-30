@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import webbrowser
+
 from db.models import *
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -11,11 +11,13 @@ from classes.song import *
 
 
 class CLI:
-    def __init__(self, user_input):
+    def __init__(self, user):
         self.songs = [song for song in session.query(Song)]
         self.listeners = [listener for listener in session.query(Listener)]
         self.streams = [stream for stream in session.query(Stream)]
-        self.name = user_input
+        self.name = user.name
+        self.user = user
+        session.expunge(user)
         self.start()
 
     
@@ -49,7 +51,7 @@ class CLI:
                     exit = True
 
 def show_lists(self):
-    webbrowser.get(using='chrome').open_new("https://www.youtube.com/")
+    # webbrowser.get(using='chrome').open_new("https://www.youtube.com/")
     user_action = input("Would you like to to check out our 'songs' list or recent 'history'? (Choose one) ")
     if user_action.lower() == 'songs':
         print(' ')
@@ -83,5 +85,14 @@ if __name__ == '__main__':
     engine = create_engine('sqlite:///db/playlist.db')
     Session = sessionmaker(bind=engine)
     session = Session()
-    user_input = input("Enter Your Name: ")
-    CLI(user_input)
+    user = input("Enter Your Name: ")
+    if user in [l.name for l in session.query(Listener)]:
+        test = [l for l in session.query(Listener) if l.name == user]
+        print()
+        CLI(test[0])
+    else:
+        age = input('Age: ')
+        new_user = Listener(name = user, age = age)
+        session.add(new_user)
+        session.commit()      
+        CLI(new_user)
