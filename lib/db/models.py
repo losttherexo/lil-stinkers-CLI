@@ -14,6 +14,7 @@ class Song(Base):
     name = Column(String())
     artist = Column(String())
     year = Column(Integer(), default = '')
+    yt_link = Column(String())
 
     streams = relationship('Stream', backref=backref('song'))
     listeners = association_proxy('streams', 'listener', creator=lambda li: Stream(listener=li))

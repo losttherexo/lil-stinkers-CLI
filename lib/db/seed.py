@@ -16,8 +16,8 @@ session.query(Listener).delete()
 session.query(Song).delete()
 session.commit()
 
-s1 = Song(name='Ladders', artist="Mac Miller", year=2018)
-s2 = Song(name='Für Elise', artist="Ludwig van Beethoven", year=1810)
+s1 = Song(name='Ladders', artist="Mac Miller", year=2018, yt_link= "https://www.youtube.com/watch?v=0gzmFo8UiJQ&list=RD0gzmFo8UiJQ&start_radio=1")
+s2 = Song(name='Für Elise', artist="Ludwig van Beethoven", year=1810, yt_link= "https://www.youtube.com/watch?v=_mVW8tgGY_w")
 
 l1 = Listener(name="Jesse", age= 30)
 l2 = Listener(name="Andre", age= 27)
