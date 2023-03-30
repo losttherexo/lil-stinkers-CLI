@@ -61,7 +61,17 @@ def search_song(self):
     if not found_song:
         print('\nSong is not in Database :c')
 
-
+def search_artist(self):
+    print(' ')
+    query = input('Insert Artist Name:')
+    found_artist = False
+    for s in self.songs:
+        if s.artist.lower() == query.lower():
+            print('')
+            print([s for s in session.query(Song) if s.artist.lower() == query.lower()])
+            found_artist = True
+    if not found_artist:
+        print('\nArtist is not in Database :c')
 
 def songs(self):
     for index, song in enumerate(self.songs):

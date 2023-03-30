@@ -35,7 +35,7 @@ class CLI:
                 if choice.lower() == 'list':
                     show_lists(self)
                 elif choice.lower() == 'search':
-                    search_song(self)
+                    search_data(self)
                 elif choice.lower() == 'add':
                     add_data(self)
                 elif choice.lower() == 'help':
@@ -60,7 +60,11 @@ def show_lists(self):
         stream_history(self)
 
 def search_data(self):
-    pass
+    new_data = input("Are you searching for a 'song' or an 'artist'?")
+    if new_data.lower() == 'song':
+        search_song(self)
+    elif new_data.lower() == 'artist':
+        search_artist(self)
 
 def add_data(self):
     new_data = input("Would you like to 'queue' a song, add a 'listener' or"
