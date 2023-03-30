@@ -1,6 +1,8 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from db.models import Song
+from db.models import Song, Stream
+from collections import Counter
+
 
 engine = create_engine('sqlite:///db/playlist.db')
 Session = sessionmaker(bind=engine)
@@ -48,8 +50,18 @@ def songs(self):
         print(f'{index + 1}. {song.name} by {song.artist}')
     
     print(' ')
-    choice = input("Would you like to 'add' or 'remove' a song? ")
+    choice = input("Would you like to 'add', 'remove', or 'count' the streams of a song? ")
     if choice.lower() == 'add':
         add_song(self)
     elif choice.lower() == 'remove':
         remove_song(self)
+    elif choice.lower() == 'count':
+        stream_count(self)
+
+    
+def stream_count(self):
+    name = input('song name: ')
+    query = session.query(Song).filter(Song.name == name)
+    song = query.first()
+    songs_list = [s.song for s in session.query(Stream) if s.song == song]
+    print(Counter(songs_list).most_common(1)[0][1])
