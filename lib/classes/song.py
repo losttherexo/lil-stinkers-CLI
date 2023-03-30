@@ -1,8 +1,10 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from db.models import Song
+from db.models import Song, Stream
 import webbrowser
 from collections import Counter
+
+
 engine = create_engine('sqlite:///db/playlist.db')
 Session = sessionmaker(bind=engine)
 session = Session()
