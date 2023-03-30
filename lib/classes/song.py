@@ -8,10 +8,11 @@ session = Session()
 
 def add_song(self):
     print(' ')
-    name = input('Name: ')
+    name = input('Song name: ')
     artist = input('Artist: ')
     year = input('Year Released (can be left blank): ')
-    new_song = Song(name = name, artist = artist, year = year)
+    link = input('Youtube link: ')
+    new_song = Song(name = name, artist = artist, year = year, yt_link = link)
     print(' ')
 
     session.add(new_song)
@@ -19,6 +20,10 @@ def add_song(self):
 
     print(f'{name} by {artist}, was added to our playlist!')
     self.songs.append(new_song)
+    print('')
+    print("Don't forget to queue it up now ;)")
+
+
 
 def remove_song(self):
     print(' ')

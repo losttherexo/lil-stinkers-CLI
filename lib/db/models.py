@@ -48,9 +48,5 @@ class Stream(Base):
     song_id = Column(Integer(), ForeignKey('songs.id'))
     listener_id = Column(Integer(), ForeignKey('listeners.id'))
 
-    # stretch goal below
-
-    # link = Column(String())
-
     def __repr__(self):
         return f'Stream {self.id}: {self.song_name} streamed by {self.listener_id}'

@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-
 from db.models import *
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -88,7 +87,6 @@ if __name__ == '__main__':
     user = input("Enter Your Name: ")
     if user in [l.name for l in session.query(Listener)]:
         test = [l for l in session.query(Listener) if l.name == user]
-        print()
         CLI(test[0])
     else:
         age = input('Age: ')

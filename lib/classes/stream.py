@@ -1,6 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from db.models import Stream, Song
+from classes.song import *
 import webbrowser
 
 engine = create_engine('sqlite:///db/playlist.db')
@@ -24,4 +25,6 @@ def add_stream(self):
 
         webbrowser.get(using='chrome').open_new(song_inst.yt_link)
     else:
-        pass
+        print(' ')
+        print('You gotta upload the song first!')
+        add_song(self)
