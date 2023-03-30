@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 
+import webbrowser
 from db.models import *
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from classes.stream import *
 from classes.listener import *
 from classes.song import *
+
+
 
 class CLI:
     def __init__(self, user_input):
@@ -14,6 +17,7 @@ class CLI:
         self.streams = [stream for stream in session.query(Stream)]
         self.name = user_input
         self.start()
+
     
     def start(self):
         print(' ')
@@ -45,6 +49,7 @@ class CLI:
                     exit = True
 
 def show_lists(self):
+    webbrowser.get(using='chrome').open_new("https://www.youtube.com/")
     user_action = input("Would you like to to check out our 'songs' list or recent 'history'? (Choose one) ")
     if user_action.lower() == 'songs':
         print(' ')
