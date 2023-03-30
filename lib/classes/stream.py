@@ -8,4 +8,4 @@ session = Session()
 
 def stream_history(self):
     for index, stream in enumerate(self.streams):
-        print(f'{index + 1}. {stream.song_name} recently played {stream.song_id} by {stream.song_id}!')
+        print(f'{index + 1}. {stream.listener.name} recently played {stream.song.name} by {stream.song.artist}')

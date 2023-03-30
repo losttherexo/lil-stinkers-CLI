@@ -1,8 +1,8 @@
-"""<descriptive message>
+"""initial migration
 
-Revision ID: 2dc9f6dfcf55
+Revision ID: 67cb4f637077
 Revises: 
-Create Date: 2023-03-29 16:53:05.721442
+Create Date: 2023-03-30 08:04:33.223764
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '2dc9f6dfcf55'
+revision = '67cb4f637077'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -33,6 +33,7 @@ def upgrade() -> None:
     )
     op.create_table('streams',
     sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('song_name', sa.String(), nullable=True),
     sa.Column('song_id', sa.Integer(), nullable=True),
     sa.Column('listener_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['listener_id'], ['listeners.id'], ),
