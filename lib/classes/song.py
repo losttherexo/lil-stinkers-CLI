@@ -56,7 +56,7 @@ def search_song(self):
             choice = input("Would you like to 'play' this song?")
             if choice == 'play':
                 print(s.yt_link)
-                webbrowser.open_new(s.yt_link)
+                webbrowser.get(using='chrome').open_new(s.yt_link)
     if not found_song:
         print('\nSong is not in Database :c')
 
