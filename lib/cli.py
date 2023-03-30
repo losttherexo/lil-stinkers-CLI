@@ -48,7 +48,7 @@ def show_lists(self):
     user_action = input("Would you like to to check out our 'songs' list or recent 'history'? (Choose one) ")
     if user_action.lower() == 'songs':
         print(' ')
-        songs(self.songs)
+        songs(self)
     elif user_action.lower() == 'history':
         print(' ')
         stream_history(self)
