@@ -82,7 +82,10 @@ if __name__ == '__main__':
     engine = create_engine('sqlite:///db/playlist.db')
     Session = sessionmaker(bind=engine)
     session = Session()
-    user = input("Enter Your Name: ")
+    print(' ')
+    print("There's always an afterparty...")
+    print('')
+    user = input("Name? ")
     if user in [l.name for l in session.query(Listener)]:
         test = [l for l in session.query(Listener) if l.name == user]
         CLI(test[0])
