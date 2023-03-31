@@ -2,7 +2,6 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from db.models import Song, Stream
 import webbrowser
-from collections import Counter
 
 
 engine = create_engine('sqlite:///db/playlist.db')
@@ -65,7 +64,7 @@ def search_song(self):
             if choice == 'play':
                 webbrowser.get(using='chrome').open_new(s.yt_link)
     if not found_song:
-        print('\nSong is not in Database :c')
+        print('\nSong not found :c')
 
 
 
@@ -89,9 +88,12 @@ def stream_count(self):
     query = session.query(Song).filter(Song.name == name)
     song = query.first()
     songs_list = [s.song for s in session.query(Stream) if s.song == song]
-    song_count = Counter(songs_list).most_common(1)[0][1]
+    song_count = len(songs_list)
     print(' ')
     if song_count == 1:
         print(f"{song.name} by {song.artist} {song_count} time!")
     else:
         print(f"{song.name} by {song.artist} {song_count} times!")
+
+
+# .most_common(1)[0][1]

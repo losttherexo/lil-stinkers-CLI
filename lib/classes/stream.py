@@ -14,6 +14,9 @@ def stream_history(self):
 
 def add_stream(self):
     print('')
+    for index, song in enumerate([s for s in session.query(Song)]):
+        print(f'{index + 1}. {song.name} by {song.artist}')
+    print(' ')
     song = input("Song: ")
 
     if song in [s.name for s in self.songs]:

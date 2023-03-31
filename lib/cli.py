@@ -28,9 +28,9 @@ class CLI:
         exit = False
         while exit == False:
                 choice = input(f"Enter 'list' to see a list of all our" 
-                + " songs, 'search' to find a specific artist," 
-                + " song, or listener, or 'add' to add a song to our"
-                + " playlist's queue! ")
+                + " songs and listeners, 'search' to find a specific" 
+                + " artist or song, or 'add' to add a song to our"
+                + " playlist! ")
                 print(' ') 
                 if choice.lower() == 'list':
                     show_lists(self)
@@ -62,11 +62,9 @@ def search_data(self):
     pass
 
 def add_data(self):
-    new_data = input("Would you like to 'queue' a song, add a 'listener' or"
-    + " 'upload' a new song? ")
-    if new_data.lower() == 'listener':
-        add_listener(self)
-    elif new_data.lower() == 'upload':
+    new_data = input("Would you like to 'queue' a song or"
+    + " 'upload' a new song if not yet in our playlist? ")
+    if new_data.lower() == 'upload':
         add_song(self)
     elif new_data.lower() == 'queue':
         add_stream(self)
