@@ -69,12 +69,20 @@ def search_song(self):
 def search_artist(self):
     print(' ')
     query = input('Artist: ')
+    queried_artist = ''
     found_artist = False
+    song_list = []
     for s in self.songs:
         if s.artist.lower() == query.lower():
-            print('')
-            print([s for s in session.query(Song) if s.artist.lower() == query.lower()])
+            song_list.append(s)
+            queried_artist = s.artist
             found_artist = True
+    if found_artist:
+        print(' ')
+        print(f'Below are songs by the artist {queried_artist}:')
+        print(' ')
+        print(song_list)
+
     if not found_artist:
         print('\nArtist is not in Database :c')
 
