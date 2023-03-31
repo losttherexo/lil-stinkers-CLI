@@ -2,7 +2,6 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from db.models import Song, Stream
 import webbrowser
-from collections import Counter
 
 
 engine = create_engine('sqlite:///db/playlist.db')
@@ -13,7 +12,7 @@ def add_song(self):
     print(' ')
     name = input('Song name: ')
     artist = input('Artist: ')
-    year = input('Year Released (can be left blank): ')
+    year = input('Year released (can be left blank): ')
     link = input('Youtube link: ')
     new_song = Song(name = name, artist = artist, year = year, yt_link = link)
     print(' ')
@@ -39,31 +38,37 @@ def remove_song(self):
         
         session.delete(removed_song)
         session.commit()
+
+        print(f"{removed_song.name} by {removed_song.artist} was remnoved!")
     else:
         print(' ')
-        print('This input is case sensitive, try again! :)')
-        
-        remove_song(self)
+        print('Uh-oh! This input is case sensitive!')
+        print(' ')
+        choice = input('Try again? (Y/N): ')
+        if choice.lower() == 'y':
+            remove_song(self)
+        else:
+            pass
 
 def search_song(self):
     print(' ')
-    query = input('Insert Song Name:') 
+    query = input('Song: ') 
     found_song = False
     for s in self.songs:
         if s.name.lower() == query.lower():
             print(' ')
             print(f'{s}')
             found_song = True
-            choice = input("Would you like to 'play' this song?")
+            print(' ')
+            choice = input("Would you like to 'play' this song? ")
             if choice == 'play':
-                print(s.yt_link)
                 webbrowser.get(using='chrome').open_new(s.yt_link)
     if not found_song:
-        print('\nSong is not in Database :c')
+        print('\nSong not found :c')
 
 def search_artist(self):
     print(' ')
-    query = input('Insert Artist Name:')
+    query = input('Artist: ')
     found_artist = False
     for s in self.songs:
         if s.artist.lower() == query.lower():
@@ -74,7 +79,7 @@ def search_artist(self):
         print('\nArtist is not in Database :c')
 
 def songs(self):
-    for index, song in enumerate(self.songs):
+    for index, song in enumerate([s for s in session.query(Song)]):
         print(f'{index + 1}. {song.name} by {song.artist}')
     
     print(' ')
@@ -88,8 +93,14 @@ def songs(self):
 
     
 def stream_count(self):
-    name = input('song name: ')
+    print(' ')
+    name = input('Song: ')
     query = session.query(Song).filter(Song.name == name)
     song = query.first()
     songs_list = [s.song for s in session.query(Stream) if s.song == song]
-    print(Counter(songs_list).most_common(1)[0][1])
+    song_count = len(songs_list)
+    print(' ')
+    if song_count == 1:
+        print(f"{song.name} by {song.artist} {song_count} time!")
+    else:
+        print(f"{song.name} by {song.artist} {song_count} times!")
