@@ -50,8 +50,7 @@ class CLI:
                     exit = True
 
 def show_lists(self):
-    # webbrowser.get(using='chrome').open_new("https://www.youtube.com/")
-    user_action = input("Would you like to to check out our 'songs' list or recent 'history'? (Choose one) ")
+    user_action = input("Would you like to to check out our 'songs' list or recent 'history'? (Choose one): ")
     if user_action.lower() == 'songs':
         print(' ')
         songs(self)

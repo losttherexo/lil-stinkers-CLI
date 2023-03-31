@@ -28,5 +28,3 @@ def add_stream(self):
         print(' ')
         print('You gotta upload the song first!')
         add_song(self)
-
-

@@ -18,7 +18,3 @@ def add_listener(self):
 
     print(f'{name}, was added to the group!')
     self.listeners.append(new_listener)
-
-# def listeners(listeners):
-#     for index, listener in enumerate(listeners):
-#         print(f'{index + 1}. {listener.name}')
