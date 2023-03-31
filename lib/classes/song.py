@@ -25,8 +25,6 @@ def add_song(self):
     print('')
     print("Don't forget to queue it up now ;)")
 
-
-
 def remove_song(self):
     print(' ')
     song = input('What song would you like to remove? ')
@@ -72,16 +70,17 @@ def search_artist(self):
     queried_artist = ''
     found_artist = False
     song_list = []
-    for s in self.songs:
+    for s in session.query(Song):
         if s.artist.lower() == query.lower():
             song_list.append(s)
             queried_artist = s.artist
             found_artist = True
     if found_artist:
         print(' ')
-        print(f'Below are songs by the artist {queried_artist}:')
+        print(f'Songs by {queried_artist}:')
         print(' ')
-        print(song_list)
+        for index, song in enumerate([s for s in song_list]):
+            print(f'{index + 1}. {song.name} by {song.artist} ')
 
     if not found_artist:
         print('\nArtist is not in Database :c')
@@ -98,8 +97,7 @@ def songs(self):
         remove_song(self)
     elif choice.lower() == 'count':
         stream_count(self)
-
-    
+  
 def stream_count(self):
     print(' ')
     name = input('Song: ')

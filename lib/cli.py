@@ -28,7 +28,7 @@ class CLI:
         exit = False
         while exit == False:
                 choice = input(f"Enter 'list' to see a list of all our" 
-                + " songs and listeners, 'search' to find a specific" 
+                + " songs or recent history, 'search' to find a specific" 
                 + " artist or song, or 'add' to add a song to our"
                 + " playlist! ")
                 print(' ') 
