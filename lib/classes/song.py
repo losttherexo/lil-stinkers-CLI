@@ -39,7 +39,7 @@ def remove_song(self):
         session.delete(removed_song)
         session.commit()
 
-        print(f"{removed_song.name} by {removed_song.artist} was remnoved!")
+        print(f"{removed_song.name} by {removed_song.artist} was removed!")
     else:
         print(' ')
         print('Uh-oh! This input is case sensitive!')
@@ -101,6 +101,6 @@ def stream_count(self):
     song_count = len(songs_list)
     print(' ')
     if song_count == 1:
-        print(f"{song.name} by {song.artist} {song_count} time!")
+        print(f"{song.name} by {song.artist} was played {song_count} time!")
     else:
-        print(f"{song.name} by {song.artist} {song_count} times!")
+        print(f"{song.name} by {song.artist} was played {song_count} times!")
