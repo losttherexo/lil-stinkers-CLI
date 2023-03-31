@@ -33,7 +33,10 @@ def remove_song(self):
         print(' ')
         query = session.query(Song).filter(Song.name == song)
         removed_song = query.first()
-        
+        stream = session.query(Stream).filter(Stream.song_name == song)
+
+
+        stream.delete()
         session.delete(removed_song)
         session.commit()
 

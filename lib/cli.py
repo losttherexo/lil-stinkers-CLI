@@ -7,8 +7,6 @@ from classes.stream import *
 from classes.listener import *
 from classes.song import *
 
-
-
 class CLI:
     def __init__(self, user):
         self.songs = [song for song in session.query(Song)]
@@ -19,7 +17,6 @@ class CLI:
         session.expunge(user)
         self.start()
 
-    
     def start(self):
         print(' ')
         print(f"Welcome the Little Stinker's Playlist {self.name}!")
@@ -89,6 +86,10 @@ if __name__ == '__main__':
     if user in [l.name for l in session.query(Listener)]:
         test = [l for l in session.query(Listener) if l.name == user]
         CLI(test[0])
+    elif user.lower() == 'kevin':
+        print('')
+        print('ERROR: No stinkers allowed ;P')
+        print('')
     else:
         age = input('Age: ')
         new_user = Listener(name = user, age = age)
