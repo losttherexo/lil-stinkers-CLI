@@ -8,11 +8,12 @@ Thuggin Duggan
 
 In our virtual playlist, you can do all sorts of neat stuff!
 
-List out all songs or listeners.
+Either login or create a new username!
 
-Queue songs, upload new songs, or add new listeners.
+List out all songs and history.
 
 Search through songs, artists, or listeners.
 
-Delete a song from playlist.
+Queue, upload and delete songs.
 
+If you need some guidance, enter 'help' once you've logged in!
