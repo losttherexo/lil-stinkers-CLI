@@ -11,9 +11,9 @@ if __name__ == '__main__':
     Session = sessionmaker(bind=engine)
     session = Session()
 
-# session.query(Stream).delete() -- don't uncomment and run this file unless u want to delete our DB
+session.query(Stream).delete() 
 session.query(Listener).delete()
-# session.query(Song).delete() -- don't uncomment and run this file unless u want to delete our DB
+session.query(Song).delete()
 session.commit()
 
 s1 = Song(name='Thx fr th Mmrs', artist="Fall Out Boy", year=2007, yt_link= "https://www.youtube.com/watch?v=onzL0EM1pKY")

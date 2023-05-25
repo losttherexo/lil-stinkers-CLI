@@ -111,5 +111,7 @@ def stream_count(self):
     print(' ')
     if song_count == 1:
         print(f"{song.name} by {song.artist} was played {song_count} time!")
-    else:
+    elif song_count > 1:
         print(f"{song.name} by {song.artist} was played {song_count} times!")
+    else:
+        print('Looks like you made a typo, try again!')
