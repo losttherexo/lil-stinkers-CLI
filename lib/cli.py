@@ -85,17 +85,20 @@ if __name__ == '__main__':
     print(' ')
     print("There's always an afterparty...")
     print('')
-    user = input("Name? ")
-    if user in [l.name for l in session.query(Listener)]:
-        test = [l for l in session.query(Listener) if l.name == user]
-        CLI(test[0])
-    elif user.lower() == 'kevin':
-        print('')
-        print('ERROR: No stinkers allowed ;P')
-        print('')
-    else:
-        age = input('Age: ')
-        new_user = Listener(name = user, age = age)
-        session.add(new_user)
-        session.commit()      
-        CLI(new_user)
+    try:
+        user = input("Name? ")
+        if user in [l.name for l in session.query(Listener)]:
+            test = [l for l in session.query(Listener) if l.name == user]
+            CLI(test[0])
+        elif user.lower() == 'kevin':
+            print('')
+            print('ERROR: No stinkers allowed ;P')
+            print('')
+        else:
+            age = input('Age: ')
+            new_user = Listener(name = user, age = age)
+            session.add(new_user)
+            session.commit()      
+            CLI(new_user)
+    except KeyboardInterrupt:
+        print('\n\nSee ya later pal!\n')
