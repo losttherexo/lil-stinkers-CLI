@@ -87,8 +87,8 @@ if __name__ == '__main__':
     print('')
     try:
         user = input("Name? ")
-        if user in [l.name for l in session.query(Listener)]:
-            test = [l for l in session.query(Listener) if l.name == user]
+        if user.lower() in [l.name.lower() for l in session.query(Listener)]:
+            test = [l for l in session.query(Listener) if l.name.lower() == user.lower()]
             CLI(test[0])
         elif user.lower() == 'kevin':
             print('')
