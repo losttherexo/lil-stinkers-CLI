@@ -28,7 +28,7 @@ class Listener(Base):
     __tablename__ = 'listeners'
 
     id = Column(Integer(), primary_key=True)
-    name = Column(String())
+    name = Column(String(), unique=True)
     age = Column(Integer())
     
     streams = relationship('Stream', backref=backref('listener'), cascade='all, delete')
